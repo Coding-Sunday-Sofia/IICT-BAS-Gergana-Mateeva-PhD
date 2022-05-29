@@ -1,0 +1,170 @@
+\documentclass[14pt,a4paper,openany]{book}
+%\degree{"Доктор"} 
+%\thesistitle{МОДЕЛИРАНЕ И ОПТИМИЗАЦИЯ НА КОМУНИКАЦИОННИ СТРАТЕГИИ В УПРАВЛЕНИЕ НА ИНФОРМАЦИОННИ ПРОЦЕСИ}
+%\author{\href{https://www.iict.bas.bg/mo/bg/mateeva.htm}{Гергана Петкова \textsc{Матеева}}}
+%\supervisor{\href{https://www.iict.bas.bg/mo/bg/atanasova.htm}{доц. д-р Татяна Владимирова \textsc{Атанасова}}}
+%\addresses{ИИКТ-БАН, ул. "акад. Георги Бончев", блок 2, етаж 5, кабинет 517, град София 1113, България} 
+%\subject{01.01.12 "Информатика" \\ 4.6 "Информатика и Компютърни науки" \\ 4 "Природни науки, математика и информатика"} 
+%\university{\href{http://bas.bg}{Българска академия на науките}}
+%\faculty{\href{http://iict.bas.bg}{Институт по информационни и комуникационни технологии}} 
+%\department{\href{http://iinf.bas.bg}{Моделиране и оптимизация}}
+
+% Добавя възможност за сензитивни хипер-връзки в самия документ.
+\usepackage[pdftex, bookmarks, linktocpage]{hyperref}
+
+% Команда с множество опции за настройка на поведението на пакета hyperref, с най-полезната опция - кирилизация на заглавията от Bookmarks в Acrobat.
+\hypersetup{unicode=true, colorlinks=true, linkcolor=black, citecolor=black, urlcolor=black}
+
+% Използване на български език.
+\usepackage[T2A,T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,bulgarian]{babel}
+
+% Използва се за групиране на изображения.
+\usepackage{subcaption}
+
+% Използване на графика.
+\usepackage[pdftex]{graphicx}
+
+% Използване на по прецизни позиции за изображенията.
+\usepackage{float}
+
+% Използване на PDF-и за кориците.
+\usepackage{pdfpages}
+
+% Използване на хедър и футър.
+\usepackage{fancyhdr}
+
+% Използване на кавички при цитиране.
+\usepackage{dirtytalk}
+
+% Използва се за създаване на азбучен указател.
+\usepackage{imakeidx}
+
+% Използва се за листинги с програмен код.
+\usepackage{listings}
+
+% Използва се за оцветяване на клетките в таблиците.
+\usepackage{xcolor,colortbl}
+
+% Използва се за многоредови коментари.
+\usepackage{verbatim}
+
+% Използвасе за междуредово разстояние.
+\usepackage{lipsum}
+
+% Използва се за таблици, които да са на повече от една страница.
+\usepackage{longtable}
+
+% Заглавие.
+\title{Прогнозиране на времеви редове с изкуствени невронни мрежи}
+\makeatletter
+\let\inserttitle\@title
+\makeatother
+
+% Автор.
+\author{Гергана Петкова Матеева}
+
+% Директория с изображения.
+\graphicspath{{images/}}
+
+% Избор на активен език.
+\selectlanguage{bulgarian}
+
+% Текстове за декорация на страницата в горната и долната част.
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[RE]{\tiny\MakeUppercase{\inserttitle}}
+\fancyhead[LO]{\tiny\leftmark}
+\fancyfoot[LE,RO]{Гергана Матеева - ИИКТ-БАН - София - 2024}
+
+% Дебелина на разделителните линии.
+\renewcommand{\headrulewidth}{2pt}
+\renewcommand{\footrulewidth}{1pt}
+
+% Генериране на азбучен указател.
+\onecolumn
+\makeindex[columns=2, title=Азбучен указател, intoc]
+
+% Подменя думата използван а за ноемрация на фрагментите програмен код.
+\renewcommand{\lstlistingname}{Листинг}
+
+% Смяна на названието за списъка от листингите.
+\renewcommand{\lstlistlistingname}{Списък на листингите}
+
+% Определя характеристиките на листигните за програмния код.
+\lstset{backgroundcolor=\color{gray!30}, breaklines=true, language=r, frame=single}
+
+% Разстояние от ред и половина.
+\linespread{1.5}
+
+% Начало на документа.
+\begin{document}
+
+% Предна корица.
+\includepdf[pages={1}]{covers/front}
+\thispagestyle{empty}
+
+% Номериране на страниците със служебна информация.
+\pagenumbering{roman}
+\setcounter{page}{1}
+
+% Таблица на съдържанието.
+\addcontentsline{toc}{chapter}{Съдържание}
+\tableofcontents
+
+% Списък с абревиатурите и съкращенията.
+\addcontentsline{toc}{chapter}{Списък на съкращенията}
+\chapter*{Списък на съкращенията}
+
+\begin{longtable}{ | p{3.75cm} | c | p{3.75cm} | c | }
+\hline
+\cellcolor{gray!15}Чуждоезичен термин & \cellcolor{gray!15}Съкращение & \cellcolor{gray!15}Български термин & \cellcolor{gray!15}Съкращение \\ [0.05ex] 
+\hline
+\hline
+\end{longtable}
+
+% Списък с фигурите.
+\addcontentsline{toc}{chapter}{Списък на фигурите}
+\listoffigures
+
+% Списък с таблиците.
+\addcontentsline{toc}{chapter}{Списък на таблиците}
+\listoftables
+
+% Списък с листингите.
+\addcontentsline{toc}{chapter}{Списък на листингите}
+\lstlistoflistings
+
+\newpage
+
+% Номериране на страниците с основното изложение.
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+% Увод.
+\include{chapters/introduction}
+
+% Отделните глави са в отделни файлове.
+\include{chapters/chapter01}
+\include{chapters/chapter02}
+\include{chapters/chapter03}
+\include{chapters/chapter04}
+
+% Заключение.
+\include{chapters/conclusion}
+
+% Списък с използвана литература и източници на информация.
+\input{chapters/references}
+
+% Азбучен указател на използваните термини.
+\printindex
+
+% Приложения.
+\include{chapters/appendix01}
+
+% Задна корица.
+%\includepdf[pages=-]{covers/back}
+
+\end{document}
